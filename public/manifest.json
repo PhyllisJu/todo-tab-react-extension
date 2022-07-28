@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Todo Tab",
+  "author": "The TodoTab Team",
+  "version": "1.0",
+  "description": "The almightly new tab for your task management.",
+  "icons": {
+    "192": "logo192.png",
+    "512": "logo512.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["storage"]
+}
