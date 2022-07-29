@@ -1,15 +1,31 @@
 {
   "manifest_version": 3,
-  "name": "Todo Tab",
+  "name": "To-do Tab!",
   "author": "The TodoTab Team",
-  "version": "1.0",
+  "version": "0.0.0.1",
   "description": "The almightly new tab for your task management.",
-  "icons": {
-    "192": "logo192.png",
-    "512": "logo512.png"
-  },
+  "permissions": ["storage"],
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "permissions": ["storage"]
+  "icons": {
+    "16": "icons/16x16.png",
+    "32": "icons/32x32.png",
+    "48": "icons/48x48.png",
+    "128": "icons/128x128.png"
+  },
+  "action": {
+    "default_title": "New To-do Tab",
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/16x16.png",
+      "32": "icons/32x32.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["../src/images/*.jpeg"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
