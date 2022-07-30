@@ -1,12 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import NewTab from "./pages/NewTab";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        Hello World!
-      </header>
+      <NewTab />
     </div>
   );
 }
