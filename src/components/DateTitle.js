@@ -1,11 +1,35 @@
 import React from "react";
 
 export default function DateTitle() {
+  const [dateStr, setDateStr] = React.useState(generateDateStr());
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setDateStr(generateDateStr());
+    }, 1000);
+    return () => clearInterval(timer);
+  });
+
+  return (
+    <div>
+      <h1
+        style={{
+          fontSize: "32px",
+          fontWeight: 400,
+        }}
+      >
+        {dateStr}
+      </h1>
+    </div>
+  );
+}
+
+// helper function
+function generateDateStr() {
   const today = new Date();
   const date = today.getDate();
   const year = today.getFullYear();
   const month = today.getMonth();
-  console.log(month);
 
   const months = new Map([
     [0, "January"],
@@ -22,17 +46,5 @@ export default function DateTitle() {
     [11, "December"],
   ]);
 
-  return (
-    <div>
-      <h1
-        style={{
-          fontFamily: "'Open Sans', sans-serif",
-          fontWeight: 400,
-          fontSize: "32px",
-        }}
-      >
-        {months.get(month) + " " + date + ", " + year}
-      </h1>
-    </div>
-  );
+  return months.get(month) + " " + date + ", " + year;
 }

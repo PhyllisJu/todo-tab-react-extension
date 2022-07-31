@@ -4,3 +4,8 @@ export const yellow = "#ebe3c9";
 export const pink = "#f1cece";
 export const blue = "#c5dcf2";
 export const black = "#7a7a7a";
+export const bingURL = "https://www.bing.com/search?q=";
+export const googleURL = "https://google.com/search?q=";
+export const duckURL = "https://duckduckgo.com/?q=";
+export const baiduURL = "http://www.baidu.com/s?wd=";
+export const stackURL = "https://stackoverflow.com/search?q=";

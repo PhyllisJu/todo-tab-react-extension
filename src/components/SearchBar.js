@@ -1,3 +1,4 @@
+/*global chrome*/
 import React from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
@@ -11,15 +12,24 @@ import { ReactComponent as BaiduIcon } from "../icons/baidu.svg";
 import { ReactComponent as GoogleIcon } from "../icons/google.svg";
 import { ReactComponent as StackIcon } from "../icons/stackOverflow.svg";
 import { ReactComponent as DuckIcon } from "../icons/duckDuckGo.svg";
+import { bingURL, googleURL, duckURL, baiduURL, stackURL } from "../constants";
 
-export default function CustomizedInputBase() {
-  const [engineURL, setEngineURL] = React.useState(
-    "https://www.bing.com/search?q="
-  );
+export default function SearchBar(props) {
+  const [engineURL, setEngineURL] = React.useState(props.engine);
   const [searchInput, setSearchInput] = React.useState("");
 
-  const handleURLChange = (e) => {
+  const handleEngineChange = (e) => {
     setEngineURL(e.target.value);
+    chrome.storage.local.set(
+      {
+        engine: e.target.value,
+      },
+      () => {
+        console.log(
+          "successfully update engine in the storage: " + e.target.value
+        );
+      }
+    );
   };
 
   const handleInputChange = (e) => {
@@ -61,7 +71,6 @@ export default function CustomizedInputBase() {
             "& .MuiInputBase-input": {},
             "& .MuiSelect-select": {
               margin: 0,
-              padding: 0,
               padding: "20px",
             },
           }}
@@ -79,38 +88,38 @@ export default function CustomizedInputBase() {
             },
           }}
           value={engineURL}
-          onChange={handleURLChange}
+          onChange={handleEngineChange}
         >
           <MenuItem
-            value="https://www.bing.com/search?q="
+            value={bingURL}
             style={{ display: "flex", alignItems: "center" }}
           >
             <BingIcon style={{ fontSize: "20px", marginRight: "20px" }} />
             <span>Microsoft Bing</span>
           </MenuItem>
           <MenuItem
-            value="https://google.com/search?q="
+            value={googleURL}
             style={{ display: "flex", alignItems: "center" }}
           >
             <GoogleIcon style={{ fontSize: "20px", marginRight: "20px" }} />
             <span>Google</span>
           </MenuItem>
           <MenuItem
-            value="https://duckduckgo.com/?q="
+            value={duckURL}
             style={{ display: "flex", alignItems: "center" }}
           >
             <DuckIcon style={{ fontSize: "20px", marginRight: "20px" }} />
             <span>DuckDuckGo</span>
           </MenuItem>
           <MenuItem
-            value="http://www.baidu.com/s?wd="
+            value={baiduURL}
             style={{ display: "flex", alignItems: "center" }}
           >
             <BaiduIcon style={{ fontSize: "20px", marginRight: "20px" }} />
             <span>Baidu</span>
           </MenuItem>
           <MenuItem
-            value="https://stackoverflow.com/search?q="
+            value={stackURL}
             style={{ display: "flex", alignItems: "center" }}
           >
             <StackIcon style={{ fontSize: "20px", marginRight: "20px" }} />
