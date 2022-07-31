@@ -2,6 +2,7 @@
 import React from "react";
 import BgColorSelector from "../components/BgColorSelector";
 import SearchBar from "../components/SearchBar";
+import DateTitle from "../components/DateTitle";
 import { white } from "../constants";
 
 export default function NewTab() {
@@ -25,6 +26,7 @@ export default function NewTab() {
       }}
     >
       {/* <BgColorSelector /> */}
+      <DateTitle />
       <SearchBar />
     </div>
   );

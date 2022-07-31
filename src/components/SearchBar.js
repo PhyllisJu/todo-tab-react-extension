@@ -129,7 +129,7 @@ export default function CustomizedInputBase() {
           backgroundColor: "#ffffff",
           border: "2px solid #E8E8E8",
           borderRadius: "0px 15px 15px 0px",
-          height: "40px",
+          height: "48px",
           boxShadow: "none",
         }}
       >
