@@ -1,0 +1,9 @@
+.time-input input {
+  -moz-appearance: textfield;
+}
+
+.time-input input::-webkit-outer-spin-button,
+.time-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

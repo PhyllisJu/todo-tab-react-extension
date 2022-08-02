@@ -47,6 +47,7 @@ export default function SearchBar(props) {
       style={{
         display: "flex",
         alignItems: "center",
+        justifyContent: "space-between",
       }}
     >
       <FormControl
@@ -134,7 +135,7 @@ export default function SearchBar(props) {
           padding: "2px",
           display: "flex",
           alignItems: "center",
-          width: 510,
+          width: 600,
           backgroundColor: "#ffffff",
           border: "2px solid #E8E8E8",
           borderRadius: "0px 15px 15px 0px",
@@ -145,7 +146,7 @@ export default function SearchBar(props) {
         <InputBase
           sx={{ ml: 1, flex: 1 }}
           placeholder="Search..."
-          inputProps={{ "aria-label": "search online" }}
+          inputProps={{ "aria-label": "search online", spellCheck: "false" }}
           onChange={handleInputChange}
           value={searchInput}
         />

@@ -1,22 +1,13 @@
 import React from "react";
 import "./CalendarInput.css";
-import { ReactComponent as CalendarIcon } from "../icons/calendar.svg";
 
-export default function CalendarInput() {
+export default function CalendarInput(props) {
   return (
-    <div
+    <input
+      type="date"
       className="calendar-input"
-      style={{
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <input type="date" />
-      {/* <CalendarIcon
-        style={{
-          marginLeft: "10px",
-        }}
-      /> */}
-    </div>
+      value={props.input}
+      onChange={props.onChange}
+    />
   );
 }

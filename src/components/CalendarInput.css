@@ -1,5 +1,14 @@
-.calendar-input input[type="date"] {
+.calendar-input {
   background-color: #ffffff;
-  border: "2px solid #E8E8E8";
-  padding: 5px;
+  outline: none;
+  border: 2px solid #e8e8e8;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 13px;
+  width: 250px;
+  letter-spacing: 1px;
+}
+
+.calendar-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
 }
