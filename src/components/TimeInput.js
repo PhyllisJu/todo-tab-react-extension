@@ -8,18 +8,20 @@ export default function TimeInput(props) {
         type="number"
         name="hour"
         value={props.hour}
-        min="0"
-        max="12"
         onChange={props.onChange}
+        onBlur={props.onBlur}
+        placeholder="hh"
+        onKeyDown={props.onKeyDown}
       />
       <span>:</span>
       <input
         type="number"
         name="minute"
         value={props.minute}
-        min="0"
-        max="59"
         onChange={props.onChange}
+        onBlur={props.onBlur}
+        placeholder="mm"
+        onKeyDown={props.onKeyDown}
       />
     </div>
   );

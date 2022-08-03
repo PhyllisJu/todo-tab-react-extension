@@ -10,8 +10,8 @@ export default function AddTaskArea() {
   const [taskInput, setTaskInput] = React.useState("");
   const [categoryInput, setCategoryInput] = React.useState("");
   const [dateInput, setDateInput] = React.useState("");
-  const [hourInput, setHourInput] = React.useState("08");
-  const [minuteInput, setMinuteInput] = React.useState("00");
+  const [hourInput, setHourInput] = React.useState("");
+  const [minuteInput, setMinuteInput] = React.useState("");
   const [amPm, setAmPm] = React.useState("AM");
 
   const handleTaskInput = (e) => {
@@ -32,16 +32,41 @@ export default function AddTaskArea() {
   };
 
   const handleTimeInput = (e) => {
-    let input = "";
-    if (e.target.value < 10) {
-      input = "0" + e.target.value;
-    } else {
-      input = e.target.value;
-    }
+    let input = e.target.value.toString();
+    // input = input.replace(/[e\+\-\.]/gi, "");
+    // TODO: the above line of code checks whether the user pastes an invalid charater
+    // It should be written in a event handler of "input" event
     if (e.target.name === "hour") {
+      if (input > 12 || input < 0) return;
       setHourInput(input);
     } else {
+      if (input > 59 || input < 0) return;
       setMinuteInput(input);
+    }
+  };
+
+  const handleTimeBlur = (e) => {
+    if (e.target.name === "hour") {
+      if (hourInput.length === 1) {
+        setHourInput("0" + hourInput);
+      }
+      if (hourInput.length > 2) {
+        setHourInput(hourInput.slice(1));
+      }
+    } else {
+      if (minuteInput.length === 1) {
+        setMinuteInput("0" + minuteInput);
+      }
+      if (minuteInput.length > 2) {
+        setMinuteInput(minuteInput.slice(1));
+      }
+    }
+  };
+
+  const invalidChars = ["-", "+", "e", "."];
+  const handleTimeKeyDown = (e) => {
+    if (invalidChars.includes(e.key)) {
+      e.preventDefault();
     }
   };
 
@@ -71,6 +96,8 @@ export default function AddTaskArea() {
           hour={hourInput}
           minute={minuteInput}
           onChange={handleTimeInput}
+          onBlur={handleTimeBlur}
+          onKeyDown={handleTimeKeyDown}
         />
         <AmPmBtn value={amPm} onClick={handleAmPm} />
       </div>
