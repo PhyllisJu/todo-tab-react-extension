@@ -44,5 +44,9 @@ function generateTimeStr() {
   if (minute <= 9) {
     minute = "0" + minute;
   }
+
+  if (hour <= 9) {
+    hour = "0" + hour;
+  }
   return hour + ":" + minute + " " + suffix;
 }

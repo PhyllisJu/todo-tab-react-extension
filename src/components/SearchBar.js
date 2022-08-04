@@ -53,7 +53,7 @@ export default function SearchBar(props) {
       <FormControl
         sx={{
           height: "48px",
-          minWidth: "35px",
+          minWidth: "50px",
           flex: 0.2,
           margin: 0,
           padding: 0,
