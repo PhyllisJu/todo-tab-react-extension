@@ -9,6 +9,7 @@ export default function TimeInput(props) {
         name="hour"
         value={props.hour}
         onChange={props.onChange}
+        onPaste={props.onPaste}
         onBlur={props.onBlur}
         placeholder="hh"
         onKeyDown={props.onKeyDown}
@@ -19,6 +20,7 @@ export default function TimeInput(props) {
         name="minute"
         value={props.minute}
         onChange={props.onChange}
+        onPaste={props.onPaste}
         onBlur={props.onBlur}
         placeholder="mm"
         onKeyDown={props.onKeyDown}

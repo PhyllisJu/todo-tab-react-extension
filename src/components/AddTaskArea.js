@@ -33,7 +33,6 @@ export default function AddTaskArea() {
 
   const handleTimeInput = (e) => {
     let input = e.target.value.toString();
-    // input = input.replace(/[e\+\-\.]/gi, "");
     // TODO: the above line of code checks whether the user pastes an invalid charater
     // It should be written in a event handler of "input" event
     if (e.target.name === "hour") {
@@ -43,6 +42,10 @@ export default function AddTaskArea() {
       if (input > 59 || input < 0) return;
       setMinuteInput(input);
     }
+  };
+    
+  const handleTimePaste = (e) => {
+    e.preventDefault()
   };
 
   const handleTimeBlur = (e) => {
@@ -96,6 +99,7 @@ export default function AddTaskArea() {
           hour={hourInput}
           minute={minuteInput}
           onChange={handleTimeInput}
+          onPaste={handleTimePaste}
           onBlur={handleTimeBlur}
           onKeyDown={handleTimeKeyDown}
         />
