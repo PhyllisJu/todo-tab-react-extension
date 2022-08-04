@@ -11,10 +11,18 @@ export default function TimeInput(props) {
         onChange={props.onChange}
         onPaste={props.onPaste}
         onBlur={props.onBlur}
-        placeholder="hh"
+        placeholder="08"
         onKeyDown={props.onKeyDown}
       />
-      <span>:</span>
+      <span
+        style={{
+          fontSize: "20px",
+          fontWeight: "bold",
+          margin: "0px 8px",
+        }}
+      >
+        :
+      </span>
       <input
         type="number"
         name="minute"
@@ -22,7 +30,7 @@ export default function TimeInput(props) {
         onChange={props.onChange}
         onPaste={props.onPaste}
         onBlur={props.onBlur}
-        placeholder="mm"
+        placeholder="00"
         onKeyDown={props.onKeyDown}
       />
     </div>

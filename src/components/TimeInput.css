@@ -1,5 +1,15 @@
 .time-input input {
   -moz-appearance: textfield;
+  background-color: #ffffff;
+  outline: none;
+  border: 2px solid #e8e8e8;
+  padding: 6px 10px;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 2px;
+  border-radius: 13px;
+  width: 4vw;
+  min-width: 80px;
 }
 
 .time-input input::-webkit-outer-spin-button,

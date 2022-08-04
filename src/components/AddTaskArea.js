@@ -14,6 +14,7 @@ export default function AddTaskArea() {
   const [minuteInput, setMinuteInput] = React.useState("");
   const [amPm, setAmPm] = React.useState("AM");
 
+  // handle input methods
   const handleTaskInput = (e) => {
     setTaskInput(e.target.value);
   };
@@ -30,11 +31,8 @@ export default function AddTaskArea() {
       setAmPm("AM");
     }
   };
-
   const handleTimeInput = (e) => {
     let input = e.target.value.toString();
-    // TODO: the above line of code checks whether the user pastes an invalid charater
-    // It should be written in a event handler of "input" event
     if (e.target.name === "hour") {
       if (input > 12 || input < 0) return;
       setHourInput(input);
@@ -43,11 +41,19 @@ export default function AddTaskArea() {
       setMinuteInput(input);
     }
   };
-    
+
+  // prevent users from pasting invalid chars into time input
+  const invalidChars = ["-", "+", "e", "."];
+  const handleTimeKeyDown = (e) => {
+    if (invalidChars.includes(e.key)) {
+      e.preventDefault();
+    }
+  };
   const handleTimePaste = (e) => {
-    e.preventDefault()
+    e.preventDefault();
   };
 
+  // format the time input when the input loses focus
   const handleTimeBlur = (e) => {
     if (e.target.name === "hour") {
       if (hourInput.length === 1) {
@@ -63,13 +69,6 @@ export default function AddTaskArea() {
       if (minuteInput.length > 2) {
         setMinuteInput(minuteInput.slice(1));
       }
-    }
-  };
-
-  const invalidChars = ["-", "+", "e", "."];
-  const handleTimeKeyDown = (e) => {
-    if (invalidChars.includes(e.key)) {
-      e.preventDefault();
     }
   };
 

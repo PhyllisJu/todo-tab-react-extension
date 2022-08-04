@@ -52,9 +52,9 @@ export default function SearchBar(props) {
     >
       <FormControl
         sx={{
-          minWidth: 120,
           height: "48px",
-          maxWidth: "50px",
+          minWidth: "35px",
+          flex: 0.2,
           margin: 0,
           padding: 0,
         }}
@@ -128,14 +128,15 @@ export default function SearchBar(props) {
           </MenuItem>
         </Select>
       </FormControl>
+
       <Paper
         component="form"
         onSubmit={handleSearchSubmit}
         sx={{
           padding: "2px",
           display: "flex",
+          flex: 0.8,
           alignItems: "center",
-          width: 600,
           backgroundColor: "#ffffff",
           border: "2px solid #E8E8E8",
           borderRadius: "0px 15px 15px 0px",

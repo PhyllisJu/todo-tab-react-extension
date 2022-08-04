@@ -5,7 +5,8 @@
   padding: 5px 10px;
   font-size: 18px;
   border-radius: 13px;
-  width: 250px;
+  width: 14vw;
+  min-width: 180px;
   letter-spacing: 1px;
 }
 
