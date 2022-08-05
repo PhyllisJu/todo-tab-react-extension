@@ -1,3 +1,4 @@
+/* global chrome */
 import React from "react";
 import "./CalendarInput.css";
 

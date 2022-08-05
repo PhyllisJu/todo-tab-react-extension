@@ -4,16 +4,10 @@ const storage = new Schema({
   tasks: [
     {
       title: String,
-      due: String | "At any time",
+      dueDate: String,
+      dueTime: String,
       category: String | "Default Category",
     },
   ],
-  categories: [
-    {
-      title: "Default Category",
-    },
-    {
-      title: String,
-    },
-  ],
+  categories: ["Default Category"],
 });

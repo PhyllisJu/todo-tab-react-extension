@@ -1,3 +1,4 @@
+/* global chrome */
 import React from "react";
 import "./AmPmBtn.css";
 import TaskInput from "./TaskInput";
@@ -13,6 +14,67 @@ export default function AddTaskArea() {
   const [hourInput, setHourInput] = React.useState("");
   const [minuteInput, setMinuteInput] = React.useState("");
   const [amPm, setAmPm] = React.useState("AM");
+
+  // handle adding a task
+  const handleSubmit = () => {
+    if (taskInput) {
+      // process inputs
+      let dueTime = "";
+      let categoryTitle = "Default Category";
+      if (hourInput && minuteInput) {
+        dueTime = hourInput + ":" + minuteInput + " " + amPm;
+      }
+      if (categoryInput) {
+        categoryTitle = categoryInput;
+      }
+
+      // get current tasks
+      const newTask = {
+        title: taskInput,
+        dueDate: dateInput ? dateInput : "",
+        dueTime: dueTime,
+        category: categoryTitle,
+      };
+      let currentTasks = [];
+      chrome.storage.local.get({ tasks: [] }, function (result) {
+        currentTasks = [...result.tasks];
+      });
+
+      // add the new task
+      chrome.storage.local.set(
+        {
+          tasks: [...currentTasks, newTask],
+        },
+        () => console.log("add the task successfully!")
+      );
+
+      // get current categories
+      let currentCategories = [];
+      chrome.storage.local.get(
+        { categories: ["Default Category"] },
+        function (result) {
+          currentCategories = [...result.categories];
+          console.log(currentCategories);
+        }
+      );
+
+      // add the new category
+      // TODO: how to compare uppercase and lowercase?
+      if (currentCategories.indexOf(categoryTitle) === -1) {
+        console.log("enter adding a new cate");
+        chrome.storage.local.set(
+          {
+            categories: [...currentCategories, categoryTitle],
+          },
+          () => console.log(chrome.storage.local)
+        );
+      } else {
+        console.log("The category already exists");
+      }
+    } else {
+      console.log("you must provide a task title");
+    }
+  };
 
   // handle input methods
   const handleTaskInput = (e) => {
@@ -73,12 +135,13 @@ export default function AddTaskArea() {
   };
 
   return (
-    <div
+    <form
       style={{
         display: "flex",
         flexDirection: "column",
         width: "100%",
       }}
+      onSubmit={handleSubmit}
     >
       <label style={labelStyle}>Task *</label>
       <div className="task-input-area">
@@ -111,12 +174,13 @@ export default function AddTaskArea() {
       <div style={{ display: "flex", flexDirection: "row-reverse" }}>
         <button
           className="am-pm-btn"
+          type="submit"
           style={{ width: "150px", marginTop: "15px" }}
         >
           Add Task
         </button>
       </div>
-    </div>
+    </form>
   );
 }
 
