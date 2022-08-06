@@ -9,7 +9,6 @@ import TimeTitle from "../components/TimeTitle";
 import AddTaskArea from "../components/AddTaskArea";
 
 export default function NewTab() {
-  // TODO: bug: the selected value of SearchBar component is always the initial value of currentEngine
   const [currentEngine, setCurrentEngine] = React.useState("");
   const [bgColor, setBgColor] = React.useState("");
   // manage background color
@@ -26,6 +25,20 @@ export default function NewTab() {
   });
 
   console.log("The current engine is (NewTab): " + currentEngine);
+
+  // add chrome listener to update background color
+  chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName === "local" && "backgroundColor" in changes) {
+      setBgColor(changes.backgroundColor.newValue);
+    }
+  });
+
+  // add chrome listener to update search engine
+  chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName === "local" && "engine" in changes) {
+      setCurrentEngine(changes.engine.newValue);
+    }
+  });
 
   return (
     <div className="new-tab" style={{
