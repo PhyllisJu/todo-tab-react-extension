@@ -17,6 +17,14 @@ import { bingURL, googleURL, duckURL, baiduURL, stackURL } from "../constants";
 export default function SearchBar(props) {
   const [engineURL, setEngineURL] = React.useState(props.engine);
   const [searchInput, setSearchInput] = React.useState("");
+  React.useEffect(() => {
+    setEngineURL(props.engine);
+  }, [props.engine]);
+
+  console.log("The current engine is (SearchBar): " + engineURL);
+  console.log("The current engine input is (SearchBar): " + props.engine);
+
+
 
   const handleEngineChange = (e) => {
     setEngineURL(e.target.value);

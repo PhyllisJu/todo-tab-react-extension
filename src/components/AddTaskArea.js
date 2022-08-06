@@ -38,39 +38,28 @@ export default function AddTaskArea() {
       let currentTasks = [];
       chrome.storage.local.get({ tasks: [] }, function (result) {
         currentTasks = [...result.tasks];
-      });
-
-      // add the new task
-      chrome.storage.local.set(
-        {
-          tasks: [...currentTasks, newTask],
-        },
-        () => console.log("add the task successfully!")
+      }).then(
+        // add new task to tasks array
+        chrome.storage.local.set({ tasks: [...currentTasks, newTask] }
+        ).then(() => console.log("Task added")),
       );
 
       // get current categories
       let currentCategories = [];
       chrome.storage.local.get(
-        { categories: ["Default Category"] },
-        function (result) {
-          currentCategories = [...result.categories];
-          console.log(currentCategories);
+        { categories: ["Default Category"] }
+      ).then((result) => {
+        currentCategories = [...result.categories];
+        // add the new category if it doesn't exist
+        if (!currentCategories.includes(categoryTitle)) {
+          chrome.storage.local.set(
+            {
+              categories: [...currentCategories, categoryTitle],
+            }
+          ).then(() => console.log("Category added"));
         }
-      );
+      })
 
-      // add the new category
-      // TODO: how to compare uppercase and lowercase?
-      if (currentCategories.indexOf(categoryTitle) === -1) {
-        console.log("enter adding a new cate");
-        chrome.storage.local.set(
-          {
-            categories: [...currentCategories, categoryTitle],
-          },
-          () => console.log(chrome.storage.local)
-        );
-      } else {
-        console.log("The category already exists");
-      }
     } else {
       console.log("you must provide a task title");
     }

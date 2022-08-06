@@ -1,5 +1,4 @@
 .new-tab {
-  background-color: #f4f4f4;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -54,9 +53,11 @@
   .new-tab {
     padding: 2vh 20px;
   }
+
   .new-tab .new-tab-bottom {
     display: block;
   }
+
   .new-tab .new-tab-bottom .new-tab-left,
   .new-tab .new-tab-bottom .new-tab-right {
     flex: none;
