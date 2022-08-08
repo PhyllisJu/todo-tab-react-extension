@@ -6,6 +6,7 @@ import CalendarInput from "./CalendarInput";
 import CategoryInput from "./CategoryInput";
 import TimeInput from "./TimeInput";
 import AmPmBtn from "./AmPmBtn";
+import { randomColors } from "../constants";
 
 export default function AddTaskArea() {
   const [taskInput, setTaskInput] = React.useState("");
@@ -29,37 +30,8 @@ export default function AddTaskArea() {
         categoryTitle = categoryInput;
       }
 
-      // get current tasks
-      // TODO: generate a random color code and assign it to newTask (property: "color")
-      const newTask = {
-        title: taskInput,
-        dueDate: dateInput ? dateInput : "",
-        dueTime: dueTime,
-        category: categoryTitle,
-      };
-      let currentTasks = [];
-      chrome.storage.local.get({ tasks: [] }).then((result) => {
-        // add new task to tasks array
-        chrome.storage.local
-          .set({ tasks: [...result.tasks, newTask] })
-          .then(() => console.log("Task added"));
-      });
-
-      // get current categories
-      let currentCategories = [];
-      chrome.storage.local
-        .get({ categories: ["Default Category"] })
-        .then((result) => {
-          currentCategories = [...result.categories];
-          // add the new category if it doesn't exist
-          if (!currentCategories.includes(categoryTitle)) {
-            chrome.storage.local
-              .set({
-                categories: [...currentCategories, categoryTitle],
-              })
-              .then(() => console.log("Category added"));
-          }
-        });
+      addTask(taskInput, dateInput, dueTime, categoryTitle);
+      addCategory(categoryTitle);
     } else {
       console.log("you must provide a task title");
     }
@@ -128,7 +100,14 @@ export default function AddTaskArea() {
 
   // get the current category list
   chrome.storage.local
-    .get({ categories: ["Default Category"] })
+    .get({
+      categories: [
+        {
+          title: "Default Category",
+          color: "#FD9271",
+        },
+      ],
+    })
     .then((result) => {
       setCategoryList(result.categories);
     });
@@ -194,3 +173,69 @@ const labelStyle = {
   color: "black",
   margin: "15px 0px 10px 0px",
 };
+
+// helper function
+// generate a random color code
+function generateRandomColor() {
+  const total = randomColors.length;
+  const randomIndex = Math.floor(Math.random() * total);
+  return randomColors[randomIndex];
+}
+
+// helper function
+// add a new task
+function addTask(taskInput, dateInput, dueTime, categoryTitle) {
+  // get current tasks
+  const newTask = {
+    title: taskInput,
+    dueDate: dateInput ? dateInput : "",
+    dueTime: dueTime,
+    category: categoryTitle,
+  };
+  chrome.storage.local.get({ tasks: [] }).then((result) => {
+    // add new task to tasks array
+    chrome.storage.local
+      .set({ tasks: [...result.tasks, newTask] })
+      .then(() => console.log("Task added"));
+  });
+}
+
+// helper function
+// add a new category
+function addCategory(categoryTitle) {
+  // generate a random color code
+  const randomColor = generateRandomColor();
+  // create a new category
+  const newCategory = {
+    title: categoryTitle,
+    color: randomColor,
+  };
+  // get current categories
+  chrome.storage.local
+    .get({
+      categories: [
+        {
+          title: "Default Category",
+          color: "#FD9271",
+        },
+      ],
+    })
+    .then((result) => {
+      // check if the new category is unique
+      let isUnique = true;
+      for (let category of result.categories) {
+        if (category.title === categoryTitle) {
+          isUnique = false;
+          break;
+        }
+      }
+      if (isUnique) {
+        // add the new category if it doesn't exist
+        chrome.storage.local
+          .set({
+            categories: [...result.categories, newCategory],
+          })
+          .then(() => console.log("Category added"));
+      }
+    });
+}

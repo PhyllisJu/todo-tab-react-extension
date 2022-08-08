@@ -14,17 +14,18 @@
   border-radius: 15px;
   padding: 10px 0px;
   width: 14vw;
-  height: 150px;
+  min-width: 150px;
+  max-height: 150px;
   overflow-y: scroll;
   margin-top: 8px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #000000;
+  text-align: center;
 }
 
 .category-input-menu li {
   list-style: none;
-  text-align: center;
-  font-weight: 400;
-  font-size: 18px;
-  color: #000000;
   padding: 5px 0px;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -55,3 +56,9 @@
 .category-input-menu::-webkit-scrollbar-track {
   margin-block: 5px;
 }
+
+/* @media (max-width: 1000px) {
+  .category-input-menu {
+    width: 100px;
+  }
+} */

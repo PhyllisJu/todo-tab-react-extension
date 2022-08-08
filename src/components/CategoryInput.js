@@ -39,13 +39,26 @@ export default function CategoryInput(props) {
         spellCheck="false"
         onFocus={handleFocus}
       />
-      <ul className={`category-input-menu ${menuState}`} ref={menuRef}>
-        {props.categoryList.map((category, index) => (
-          <li key={index} value={category} onClick={props.handleCategorySelect}>
-            {category}
-          </li>
-        ))}
-      </ul>
+      {props.categoryList.length === 1 &&
+      props.categoryList[0].title === "Default Category" ? (
+        <></>
+      ) : (
+        <ul className={`category-input-menu ${menuState}`} ref={menuRef}>
+          {props.categoryList.map((category, index) => {
+            if (category.title !== "Default Category") {
+              return (
+                <li
+                  key={index}
+                  value={category.title}
+                  onClick={props.handleCategorySelect}
+                >
+                  {category.title}
+                </li>
+              );
+            }
+          })}
+        </ul>
+      )}
     </div>
   );
 }
