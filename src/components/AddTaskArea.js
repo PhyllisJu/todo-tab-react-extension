@@ -14,6 +14,7 @@ export default function AddTaskArea() {
   const [hourInput, setHourInput] = React.useState("");
   const [minuteInput, setMinuteInput] = React.useState("");
   const [amPm, setAmPm] = React.useState("AM");
+  const [categoryList, setCategoryList] = React.useState([]);
 
   // handle adding a task
   const handleSubmit = () => {
@@ -29,6 +30,7 @@ export default function AddTaskArea() {
       }
 
       // get current tasks
+      // TODO: generate a random color code and assign it to newTask (property: "color")
       const newTask = {
         title: taskInput,
         dueDate: dateInput ? dateInput : "",
@@ -38,26 +40,26 @@ export default function AddTaskArea() {
       let currentTasks = [];
       chrome.storage.local.get({ tasks: [] }).then((result) => {
         // add new task to tasks array
-        chrome.storage.local.set({ tasks: [...result.tasks, newTask] }
-        ).then(() => console.log("Task added"))
+        chrome.storage.local
+          .set({ tasks: [...result.tasks, newTask] })
+          .then(() => console.log("Task added"));
       });
 
       // get current categories
       let currentCategories = [];
-      chrome.storage.local.get(
-        { categories: ["Default Category"] }
-      ).then((result) => {
-        currentCategories = [...result.categories];
-        // add the new category if it doesn't exist
-        if (!currentCategories.includes(categoryTitle)) {
-          chrome.storage.local.set(
-            {
-              categories: [...currentCategories, categoryTitle],
-            }
-          ).then(() => console.log("Category added"));
-        }
-      })
-
+      chrome.storage.local
+        .get({ categories: ["Default Category"] })
+        .then((result) => {
+          currentCategories = [...result.categories];
+          // add the new category if it doesn't exist
+          if (!currentCategories.includes(categoryTitle)) {
+            chrome.storage.local
+              .set({
+                categories: [...currentCategories, categoryTitle],
+              })
+              .then(() => console.log("Category added"));
+          }
+        });
     } else {
       console.log("you must provide a task title");
     }
@@ -69,6 +71,9 @@ export default function AddTaskArea() {
   };
   const handleCategoryInput = (e) => {
     setCategoryInput(e.target.value);
+  };
+  const handleCategorySelect = (e) => {
+    setCategoryInput(e.target.innerText);
   };
   const handleDateInput = (e) => {
     setDateInput(e.target.value);
@@ -121,6 +126,13 @@ export default function AddTaskArea() {
     }
   };
 
+  // get the current category list
+  chrome.storage.local
+    .get({ categories: ["Default Category"] })
+    .then((result) => {
+      setCategoryList(result.categories);
+    });
+
   return (
     <form
       style={{
@@ -156,7 +168,12 @@ export default function AddTaskArea() {
       </div>
       <label style={labelStyle}>Category</label>
       <div className="category-input-area">
-        <CategoryInput input={categoryInput} onChange={handleCategoryInput} />
+        <CategoryInput
+          input={categoryInput}
+          onChange={handleCategoryInput}
+          categoryList={categoryList}
+          handleCategorySelect={handleCategorySelect}
+        />
       </div>
       <div style={{ display: "flex", flexDirection: "row-reverse" }}>
         <button

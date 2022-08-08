@@ -49,6 +49,28 @@
   overflow-y: scroll;
 }
 
+.new-tab .new-tab-bottom .new-tab-right::-webkit-scrollbar {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 14px;
+}
+
+.new-tab .new-tab-bottom .new-tab-right::-webkit-scrollbar-thumb {
+  background-color: #bcc7c3;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.new-tab .new-tab-bottom .new-tab-right::-webkit-scrollbar-thumb:hover {
+  background-color: #718d84;
+}
+
+.new-tab .new-tab-bottom .new-tab-right::-webkit-scrollbar-track {
+  margin-block: 5px;
+}
+
 @media (max-width: 1000px) {
   .new-tab {
     padding: 2vh 20px;

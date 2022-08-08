@@ -1,16 +1,32 @@
 /* global chrome */
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./CategoryInput.css";
 
-// TODO: add a history category menu
 export default function CategoryInput(props) {
-  const [categoryList, setCategoryList] = React.useState([]);
-  chrome.storage.local.get(
-    { categories: ["Default Category"] },
-    function (result) {
-      setCategoryList(result.categories);
-    }
-  );
+  const [menuState, setMenuState] = React.useState("hidden");
+  const menuRef = useRef(null);
+  function useOutsideHidden(ref) {
+    useEffect(() => {
+      function handleClickOutside(e) {
+        if (ref.current && !ref.current.contains(e.target)) {
+          setMenuState("hidden");
+        }
+      }
+      // bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  useOutsideHidden(menuRef);
+
+  const handleFocus = () => {
+    setMenuState("");
+  };
+
   return (
     <div>
       <input
@@ -21,10 +37,13 @@ export default function CategoryInput(props) {
         value={props.input}
         onChange={props.onChange}
         spellCheck="false"
+        onFocus={handleFocus}
       />
-      <ul>
-        {categoryList.map((category, index) => (
-          <li key={index}>{category}</li>
+      <ul className={`category-input-menu ${menuState}`} ref={menuRef}>
+        {props.categoryList.map((category, index) => (
+          <li key={index} value={category} onClick={props.handleCategorySelect}>
+            {category}
+          </li>
         ))}
       </ul>
     </div>

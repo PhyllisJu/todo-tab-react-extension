@@ -7,6 +7,7 @@ const storage = new Schema({
       dueDate: String,
       dueTime: String,
       category: String | "Default Category",
+      color: String,
     },
   ],
   categories: ["Default Category"],
