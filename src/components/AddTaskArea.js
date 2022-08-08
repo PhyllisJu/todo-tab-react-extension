@@ -36,13 +36,11 @@ export default function AddTaskArea() {
         category: categoryTitle,
       };
       let currentTasks = [];
-      chrome.storage.local.get({ tasks: [] }, function (result) {
-        currentTasks = [...result.tasks];
-      }).then(
+      chrome.storage.local.get({ tasks: [] }).then((result) => {
         // add new task to tasks array
-        chrome.storage.local.set({ tasks: [...currentTasks, newTask] }
-        ).then(() => console.log("Task added")),
-      );
+        chrome.storage.local.set({ tasks: [...result.tasks, newTask] }
+        ).then(() => console.log("Task added"))
+      });
 
       // get current categories
       let currentCategories = [];
