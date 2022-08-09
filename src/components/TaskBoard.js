@@ -17,7 +17,7 @@ export default function TaskBoard(props) {
           padding: "5px",
         }}
       >
-        <span>{props.category}</span>
+        <span>{props.category.title}</span>
       </div>
       <div
         style={{
