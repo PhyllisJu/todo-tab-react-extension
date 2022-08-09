@@ -171,7 +171,6 @@ export default function AddTaskArea() {
 const labelStyle = {
   fontSize: "20px",
   fontWeight: 400,
-  color: "black",
   margin: "15px 0px 10px 0px",
 };
 

@@ -45,7 +45,6 @@
 .new-tab .new-tab-bottom .new-tab-right {
   flex: 0.55;
   height: 91vh;
-  background-color: antiquewhite;
   overflow-y: scroll;
 }
 
