@@ -8,6 +8,7 @@ import TimeInput from "./TimeInput";
 import AmPmBtn from "./AmPmBtn";
 import { randomColors } from "../constants";
 
+// TODO: only allow 'AM' when hour is '00' and 'PM' when hour is '12'
 export default function AddTaskArea() {
   const [taskInput, setTaskInput] = React.useState("");
   const [categoryInput, setCategoryInput] = React.useState("");

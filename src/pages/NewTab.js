@@ -7,19 +7,18 @@ import DateTitle from "../components/DateTitle";
 import { bingURL, white } from "../constants";
 import TimeTitle from "../components/TimeTitle";
 import AddTaskArea from "../components/AddTaskArea";
+import TaskArea from "../components/TaskArea";
 
 export default function NewTab() {
   const [currentEngine, setCurrentEngine] = React.useState("");
   const [bgColor, setBgColor] = React.useState("");
   // manage background color
-  chrome.storage.local.get({ backgroundColor: white }
-  ).then((result) => {
+  chrome.storage.local.get({ backgroundColor: white }).then((result) => {
     console.log("The current backgroundColor is: " + result.backgroundColor);
     setBgColor(result.backgroundColor);
   });
   // manage search engine
-  chrome.storage.local.get({ engine: bingURL }
-  ).then((result) => {
+  chrome.storage.local.get({ engine: bingURL }).then((result) => {
     console.log("The current engine is: " + result.engine);
     setCurrentEngine(result.engine);
   });
@@ -41,9 +40,12 @@ export default function NewTab() {
   });
 
   return (
-    <div className="new-tab" style={{
-      backgroundColor: bgColor,
-    }}>
+    <div
+      className="new-tab"
+      style={{
+        backgroundColor: bgColor,
+      }}
+    >
       <div className="new-tab-top">
         <BgColorSelector />
       </div>
@@ -61,7 +63,7 @@ export default function NewTab() {
           </div>
         </div>
         <div className="new-tab-right">
-          <h1>right section</h1>
+          <TaskArea />
         </div>
       </div>
     </div>
