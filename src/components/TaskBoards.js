@@ -4,7 +4,14 @@ import TaskBoard from "./TaskBoard";
 
 export default function TaskBoards() {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        margin: "10px 0px",
+      }}
+    >
       {categories.map((category, index) => (
         <TaskBoard category={category} tasks={tasks[index]} />
       ))}
