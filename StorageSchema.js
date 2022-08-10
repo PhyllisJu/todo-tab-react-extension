@@ -1,13 +1,18 @@
 const storage = new Schema({
   backgroundColor: String,
   engine: String,
-  tasks: [
+  boards: [
     {
-      title: String,
-      dueDate: String,
-      dueTime: String,
-      category: String | "Default Category",
-      checked: Boolean,
+      category: String,
+      tasks: [
+        {
+          title: String,
+          dueDate: String,
+          dueTime: String,
+          category: String | "Default Category",
+          checked: Boolean,
+        },
+      ],
     },
   ],
   categories: [

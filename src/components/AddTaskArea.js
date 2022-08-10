@@ -31,8 +31,8 @@ export default function AddTaskArea() {
         categoryTitle = categoryInput;
       }
 
-      addTask(taskInput, dateInput, dueTime, categoryTitle);
       addCategory(categoryTitle);
+      addTask(taskInput, dateInput, dueTime, categoryTitle);
     } else {
       console.log("you must provide a task title");
     }
@@ -178,8 +178,8 @@ const labelStyle = {
 // generate a random color code
 function generateRandomColor() {
   const total = randomColors.length;
-  const randomIndex = Math.floor(Math.random() * total);
-  return randomColors[randomIndex];
+  const randomIndex = Math.floor(Math.random() * 100000000);
+  return randomColors[randomIndex % total];
 }
 
 // helper function
@@ -193,12 +193,29 @@ function addTask(taskInput, dateInput, dueTime, categoryTitle) {
     category: categoryTitle,
     checked: false,
   };
-  chrome.storage.local.get({ tasks: [] }).then((result) => {
-    // add new task to tasks array
-    chrome.storage.local
-      .set({ tasks: [...result.tasks, newTask] })
-      .then(() => console.log("Task added"));
-  });
+  chrome.storage.local.get({ boards: [] }).then((result) => {
+    // find the category index and add the new task to the category
+    let boards = result.boards;
+    let categoryIndex = boards.findIndex((entry) => {
+      return entry.category === categoryTitle;
+    });
+
+    // if category doesn't exist, add it to the list
+    let categoryExists = categoryIndex !== -1;
+    if (!categoryExists) {
+      boards.push({
+        category: categoryTitle,
+        tasks: [newTask],
+      });
+    } else {
+      // if category exists, add the new task to the category
+      boards[categoryIndex].tasks.push(newTask);
+    }
+
+    chrome.storage.local.set({ boards: boards }).then(() => console.log("Task added"));
+
+  }).catch((err) => console.log(err));
+
 }
 
 // helper function
@@ -214,12 +231,7 @@ function addCategory(categoryTitle) {
   // get current categories
   chrome.storage.local
     .get({
-      categories: [
-        {
-          title: "Default Category",
-          color: "#FD9271",
-        },
-      ],
+      categories: [],
     })
     .then((result) => {
       // check if the new category is unique

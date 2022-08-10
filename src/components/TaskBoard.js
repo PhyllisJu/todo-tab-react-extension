@@ -4,6 +4,9 @@ import TaskItem from "./TaskItem";
 
 export default function TaskBoard(props) {
   // TODO: not hardcode the progress
+
+  console.log("props.tasks: " + JSON.stringify(props.tasks));
+  console.log("props.category: " + JSON.stringify(props.category));
   const [progress, setProgress] = React.useState("30");
   return (
     <div
