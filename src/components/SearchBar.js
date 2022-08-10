@@ -24,8 +24,6 @@ export default function SearchBar(props) {
   console.log("The current engine is (SearchBar): " + engineURL);
   console.log("The current engine input is (SearchBar): " + props.engine);
 
-
-
   const handleEngineChange = (e) => {
     setEngineURL(e.target.value);
     chrome.storage.local.set(
@@ -62,7 +60,7 @@ export default function SearchBar(props) {
         sx={{
           height: "48px",
           minWidth: "50px",
-          flex: 0.2,
+          flex: 0.25,
           margin: 0,
           padding: 0,
         }}
@@ -77,10 +75,13 @@ export default function SearchBar(props) {
             "& .MuiSvgIcon-root": {
               color: "#111111",
             },
-            "& .MuiInputBase-input": {},
+            "& .MuiInputBase-input": {
+              display: "inline-flex",
+              alignItems: "center",
+              textOverflow: "ellipsis",
+            },
             "& .MuiSelect-select": {
               margin: 0,
-              padding: "20px",
             },
           }}
           MenuProps={{
@@ -143,7 +144,7 @@ export default function SearchBar(props) {
         sx={{
           padding: "2px",
           display: "flex",
-          flex: 0.8,
+          flex: 0.75,
           alignItems: "center",
           backgroundColor: "#ffffff",
           border: "2px solid #E8E8E8",

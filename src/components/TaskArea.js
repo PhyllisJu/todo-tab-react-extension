@@ -6,7 +6,7 @@ export default function TaskArea() {
   return (
     <div
       style={{
-        width: "100%",
+        width: "99%",
         display: "flex",
         flexDirection: "column",
       }}

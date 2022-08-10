@@ -9,6 +9,7 @@ export default function TaskBoard(props) {
         flexDirection: "column",
         margin: "10px 0px",
         width: "100%",
+        borderRadius: "10px",
       }}
     >
       <div
@@ -16,10 +17,10 @@ export default function TaskBoard(props) {
           padding: "10px 20px",
           backgroundColor: props.category.color,
           borderBottom: "2px solid #C8DCD5",
-          boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.25)",
           borderRadius: "10px 10px 0px 0px",
           display: "flex",
           justifyContent: "space-between",
+          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 15px",
         }}
       >
         <span
@@ -39,8 +40,8 @@ export default function TaskBoard(props) {
           justifyContent: "space-between",
           padding: "10px 20px",
           backgroundColor: "#FAFAFA",
-          boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.25)",
           borderRadius: "0 0 10px 10px",
+          boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 15px",
         }}
       >
         {props.tasks.map((task, index) => (
