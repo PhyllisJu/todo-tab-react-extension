@@ -191,6 +191,7 @@ function addTask(taskInput, dateInput, dueTime, categoryTitle) {
     dueDate: dateInput ? dateInput : "",
     dueTime: dueTime,
     category: categoryTitle,
+    checked: false,
   };
   chrome.storage.local.get({ tasks: [] }).then((result) => {
     // add new task to tasks array

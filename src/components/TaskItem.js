@@ -2,7 +2,17 @@ import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import DeleteIcon from "@mui/icons-material/DeleteForeverOutlined";
 
+// TODO: move the checked state and handle method into TaskBoard??
 export default function TaskItem(props) {
+  const [checked, setChecked] = React.useState(
+    props.task.checked ? true : false
+  );
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    // TODO: update the checked property of corresponding task in the storage
+  };
+
   return (
     <div
       style={{
@@ -33,6 +43,8 @@ export default function TaskItem(props) {
               color: "#A7B4AF",
             },
           }}
+          checked={checked}
+          onChange={handleChange}
           disableRipple
         />
         <label style={{ marginLeft: "10px", color: "#111111" }}>

@@ -1,7 +1,10 @@
 import React from "react";
+import SmallProgressBar from "./SmallProgressBar";
 import TaskItem from "./TaskItem";
 
 export default function TaskBoard(props) {
+  // TODO: not hardcode the progress
+  const [progress, setProgress] = React.useState("30");
   return (
     <div
       style={{
@@ -20,6 +23,7 @@ export default function TaskBoard(props) {
           borderRadius: "10px 10px 0px 0px",
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
           boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 15px",
         }}
       >
@@ -32,7 +36,7 @@ export default function TaskBoard(props) {
         >
           {props.category.title}
         </span>
-        {/* TODO: add a progress bar */}
+        <SmallProgressBar progress={progress} color={props.category.color} />
       </div>
       <div
         style={{
