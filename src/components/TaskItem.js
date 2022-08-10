@@ -2,7 +2,6 @@ import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import DeleteIcon from "@mui/icons-material/DeleteForeverOutlined";
 
-// TODO: customize the checkbox color
 export default function TaskItem(props) {
   return (
     <div
@@ -29,11 +28,16 @@ export default function TaskItem(props) {
             margin: 0,
             padding: 0,
             fontSize: "16px",
+            color: "#A7B4AF",
+            "&.Mui-checked": {
+              color: "#A7B4AF",
+            },
           }}
-          iconStyle={{ fill: "#A7B4AF" }}
           disableRipple
         />
-        <label style={{ marginLeft: "10px" }}>{props.task.title}</label>
+        <label style={{ marginLeft: "10px", color: "#111111" }}>
+          {props.task.title}
+        </label>
       </div>
 
       <div
@@ -41,6 +45,7 @@ export default function TaskItem(props) {
           flex: 0.3,
           display: "flex",
           justifyContent: "flex-end",
+          color: "#111111",
         }}
       >
         <span>{props.task.dueDate}</span>

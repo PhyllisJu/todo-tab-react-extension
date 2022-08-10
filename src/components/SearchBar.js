@@ -102,35 +102,35 @@ export default function SearchBar(props) {
         >
           <MenuItem
             value={bingURL}
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "center", color: "#111111" }}
           >
             <BingIcon style={{ fontSize: "20px", marginRight: "20px" }} />
             <span>Microsoft Bing</span>
           </MenuItem>
           <MenuItem
             value={googleURL}
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "center", color: "#111111" }}
           >
             <GoogleIcon style={{ fontSize: "20px", marginRight: "20px" }} />
             <span>Google</span>
           </MenuItem>
           <MenuItem
             value={duckURL}
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "center", color: "#111111" }}
           >
             <DuckIcon style={{ fontSize: "20px", marginRight: "20px" }} />
             <span>DuckDuckGo</span>
           </MenuItem>
           <MenuItem
             value={baiduURL}
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "center", color: "#111111" }}
           >
             <BaiduIcon style={{ fontSize: "20px", marginRight: "20px" }} />
             <span>Baidu</span>
           </MenuItem>
           <MenuItem
             value={stackURL}
-            style={{ display: "flex", alignItems: "center" }}
+            style={{ display: "flex", alignItems: "center", color: "#111111" }}
           >
             <StackIcon style={{ fontSize: "20px", marginRight: "20px" }} />
             <span>Stackoverflow</span>

@@ -16,6 +16,7 @@ export default function TimeTitle() {
         style={{
           fontSize: "32px",
           fontWeight: 400,
+          color: "#111111",
         }}
       >
         {timeStr}

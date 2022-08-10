@@ -20,7 +20,7 @@
   margin-top: 8px;
   font-weight: 400;
   font-size: 18px;
-  color: #000000;
+  color: #111111;
   text-align: center;
 }
 
@@ -56,9 +56,3 @@
 .category-input-menu::-webkit-scrollbar-track {
   margin-block: 5px;
 }
-
-/* @media (max-width: 1000px) {
-  .category-input-menu {
-    width: 100px;
-  }
-} */

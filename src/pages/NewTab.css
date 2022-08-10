@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   padding: 2vh 40px;
+  color: #111111;
 }
 
 .new-tab .new-tab-top {

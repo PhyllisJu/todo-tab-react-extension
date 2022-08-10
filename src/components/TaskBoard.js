@@ -27,6 +27,7 @@ export default function TaskBoard(props) {
           style={{
             fontWeight: 700,
             fontSize: "20px",
+            color: "#111111",
           }}
         >
           {props.category.title}

@@ -16,6 +16,7 @@ export default function DateTitle() {
         style={{
           fontSize: "32px",
           fontWeight: 400,
+          color: "#111111",
         }}
       >
         {dateStr}

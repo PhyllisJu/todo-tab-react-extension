@@ -8,6 +8,7 @@
   width: 14vw;
   min-width: 180px;
   letter-spacing: 1px;
+  color: #111111;
 }
 
 .calendar-input::-webkit-calendar-picker-indicator {

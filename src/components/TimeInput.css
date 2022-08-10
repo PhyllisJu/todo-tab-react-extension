@@ -10,6 +10,7 @@
   border-radius: 13px;
   width: 4vw;
   min-width: 80px;
+  color: #111111;
 }
 
 .time-input input::-webkit-outer-spin-button,
