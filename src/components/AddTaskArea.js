@@ -156,13 +156,12 @@ export default function AddTaskArea() {
         />
       </div>
       <div style={{ display: "flex", flexDirection: "row-reverse" }}>
-        <button
+        <input
           className="am-pm-btn"
           type="submit"
           style={{ width: "150px", marginTop: "15px" }}
-        >
-          Add Task
-        </button>
+          value="Add Task"
+        />
       </div>
     </form>
   );
