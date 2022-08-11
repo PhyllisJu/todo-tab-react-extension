@@ -9,4 +9,4 @@ export const googleURL = "https://google.com/search?q=";
 export const duckURL = "https://duckduckgo.com/?q=";
 export const baiduURL = "http://www.baidu.com/s?wd=";
 export const stackURL = "https://stackoverflow.com/search?q=";
-export const randomColors = ["#FD9271", "#FBBC05", "#4285F4", "#34A853"];
+export const randomColors = ["#FD9271", "#FBBC05", "#4285F4", "#34A853"]; // TODO: add more colors
