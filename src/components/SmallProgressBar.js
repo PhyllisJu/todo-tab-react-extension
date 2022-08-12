@@ -1,6 +1,15 @@
 import React from "react";
 
 export default function SmallProgressBar(props) {
+  const [progress, setProgress] = React.useState(
+    (props.completed / props.total) * 100
+  );
+
+  React.useEffect(
+    () => setProgress((props.completed / props.total) * 100),
+    [props]
+  );
+
   return (
     <div
       style={{
@@ -27,12 +36,11 @@ export default function SmallProgressBar(props) {
             backgroundColor: props.color,
             borderRadius: "20px",
             height: "8px",
-            width: `${props.progress}%`,
+            width: `${progress}%`,
             transition: "width 0.5s ease-in",
           }}
         ></div>
       </div>
-      {/* TODO: not hardcode the label */}
       <span
         style={{
           fontWeight: 400,
@@ -41,7 +49,7 @@ export default function SmallProgressBar(props) {
           marginLeft: "10px",
         }}
       >
-        1 / 5
+        {props.completed + " / " + props.total}
       </span>
     </div>
   );

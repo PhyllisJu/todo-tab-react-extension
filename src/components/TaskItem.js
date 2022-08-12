@@ -1,16 +1,22 @@
+/* global chrome */
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import DeleteIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 // TODO: move the checked state and handle method into TaskBoard??
 export default function TaskItem(props) {
-  const [checked, setChecked] = React.useState(
-    props.task.checked ? true : false
-  );
+  const [checked, setChecked] = React.useState(props.task.checked);
 
-  const handleChange = (event) => {
+  React.useEffect(() => {
+    setChecked(props.task.checked);
+  }, [props]);
+
+  const handleChange = (event, category) => {
+    console.log("handleChange category parameter: " + category);
     setChecked(event.target.checked);
     // TODO: update the checked property of corresponding task in the storage
+    // the value parameter is stored in event.target.defaultValue
+    checkTask(event.target.defaultValue, category, event.target.checked);
   };
 
   return (
@@ -44,7 +50,8 @@ export default function TaskItem(props) {
             },
           }}
           checked={checked}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e, props.task.category)}
+          value={props.task.title}
           disableRipple
         />
         <label style={{ marginLeft: "10px", color: "#111111" }}>
@@ -80,4 +87,21 @@ export default function TaskItem(props) {
       </div>
     </div>
   );
+}
+
+// helper function
+// TODO: change taskTitle to taskId
+function checkTask(taskTitle, taskCategory, checkedState) {
+  chrome.storage.local.get("boards").then((result) => {
+    let boards = result.boards;
+    let boardIdx = boards.findIndex((board) => board.category === taskCategory);
+    let taskIdx = boards[boardIdx].tasks.findIndex(
+      (task) => task.title === taskTitle
+    );
+    boards[boardIdx].tasks[taskIdx].checked = checkedState;
+    chrome.storage.local
+      .set({ boards: boards })
+      .then(console.log("set task checked state successfully"))
+      .catch((err) => console.log(err));
+  });
 }

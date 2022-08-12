@@ -159,7 +159,12 @@ export default function AddTaskArea() {
         <input
           className="am-pm-btn"
           type="submit"
-          style={{ width: "150px", marginTop: "15px" }}
+          style={{
+            width: "150px",
+            marginTop: "15px",
+            boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.25)",
+            border: "none",
+          }}
           value="Add Task"
         />
       </div>
@@ -192,29 +197,32 @@ function addTask(taskInput, dateInput, dueTime, categoryTitle) {
     category: categoryTitle,
     checked: false,
   };
-  chrome.storage.local.get({ boards: [] }).then((result) => {
-    // find the category index and add the new task to the category
-    let boards = result.boards;
-    let categoryIndex = boards.findIndex((entry) => {
-      return entry.category === categoryTitle;
-    });
-
-    // if category doesn't exist, add it to the list
-    let categoryExists = categoryIndex !== -1;
-    if (!categoryExists) {
-      boards.push({
-        category: categoryTitle,
-        tasks: [newTask],
+  chrome.storage.local
+    .get({ boards: [] })
+    .then((result) => {
+      // find the category index and add the new task to the category
+      let boards = result.boards;
+      let categoryIndex = boards.findIndex((entry) => {
+        return entry.category === categoryTitle;
       });
-    } else {
-      // if category exists, add the new task to the category
-      boards[categoryIndex].tasks.push(newTask);
-    }
 
-    chrome.storage.local.set({ boards: boards }).then(() => console.log("Task added"));
+      // if category doesn't exist, add it to the list
+      let categoryExists = categoryIndex !== -1;
+      if (!categoryExists) {
+        boards.push({
+          category: categoryTitle,
+          tasks: [newTask],
+        });
+      } else {
+        // if category exists, add the new task to the category
+        boards[categoryIndex].tasks.push(newTask);
+      }
 
-  }).catch((err) => console.log(err));
-
+      chrome.storage.local
+        .set({ boards: boards })
+        .then(() => console.log("Task added"));
+    })
+    .catch((err) => console.log(err));
 }
 
 // helper function
