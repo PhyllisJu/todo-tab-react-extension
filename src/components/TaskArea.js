@@ -2,7 +2,7 @@
 import React from "react";
 import TaskBoards from "./TaskBoards";
 
-// TODO: add a progress bar
+// TODO: add a progress bar?
 export default function TaskArea() {
   let boards = [];
   chrome.storage.local

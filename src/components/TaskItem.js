@@ -3,7 +3,6 @@ import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import DeleteIcon from "@mui/icons-material/DeleteForeverOutlined";
 
-// TODO: move the checked state and handle method into TaskBoard??
 export default function TaskItem(props) {
   const [checked, setChecked] = React.useState(props.task.checked);
 
@@ -14,7 +13,6 @@ export default function TaskItem(props) {
   const handleChange = (event, category) => {
     console.log("handleChange category parameter: " + category);
     setChecked(event.target.checked);
-    // TODO: update the checked property of corresponding task in the storage
     // the value parameter is stored in event.target.defaultValue
     checkTask(event.target.defaultValue, category, event.target.checked);
   };
@@ -37,19 +35,22 @@ export default function TaskItem(props) {
 
         boards.splice(boardIdx, 1);
         // fetch categories from storage and remove the category
-        chrome.storage.local.get("categories").then((result) => {
-          let categories = result.categories;
-          let categoryIdx = categories.findIndex(
-            (entry) => entry.title === category
-          );
-          categories.splice(categoryIdx, 1);
+        chrome.storage.local
+          .get("categories")
+          .then((result) => {
+            let categories = result.categories;
+            let categoryIdx = categories.findIndex(
+              (entry) => entry.title === category
+            );
+            categories.splice(categoryIdx, 1);
 
-          console.log("categories" + categories);
-          chrome.storage.local
-            .set({ categories: categories, boards: boards })
-            .then(console.log("set category successfully"))
-            .catch((err) => console.log(err));
-        }).catch((err) => console.log(err));
+            console.log("categories" + categories);
+            chrome.storage.local
+              .set({ categories: categories, boards: boards })
+              .then(console.log("set category successfully"))
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => console.log(err));
       } else {
         // remove the task from the storage
         boards[boardIdx].tasks.splice(taskIdx, 1);
@@ -59,7 +60,7 @@ export default function TaskItem(props) {
           .catch((err) => console.log(err));
       }
     });
-  }
+  };
 
   return (
     <div
@@ -76,7 +77,7 @@ export default function TaskItem(props) {
       <div
         style={{
           cursor: "pointer",
-          flex: 0.6,
+          width: "70%",
           display: "flex",
           alignItems: "center",
         }}
@@ -96,16 +97,23 @@ export default function TaskItem(props) {
           value={props.task.title}
           disableRipple
         />
-        <label style={{ marginLeft: "10px", color: "#111111" }}>
+        <label
+          style={{
+            marginLeft: "10px",
+            color: "#111111",
+            width: "95%",
+            overflowWrap: "break-word",
+          }}
+        >
           {props.task.title}
         </label>
       </div>
 
       <div
         style={{
-          flex: 0.3,
+          width: "24%",
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "center",
           color: "#111111",
         }}
       >
@@ -115,9 +123,9 @@ export default function TaskItem(props) {
 
       <div
         style={{
-          flex: 0.1,
+          width: "6%",
           display: "flex",
-          flexDirection: "row-reverse",
+          justifyContent: "center",
         }}
       >
         <DeleteIcon

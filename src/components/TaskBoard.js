@@ -32,6 +32,8 @@ export default function TaskBoard(props) {
             fontWeight: 700,
             fontSize: "20px",
             color: "#111111",
+            width: "60%",
+            overflowWrap: "break-word",
           }}
         >
           {props.category.title}

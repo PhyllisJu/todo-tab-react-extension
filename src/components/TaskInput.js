@@ -7,7 +7,7 @@ export default function TaskInput(props) {
       type="text"
       className="task-input"
       placeholder="Input your task here"
-      maxLength="60"
+      maxLength="80"
       value={props.input}
       onChange={props.onChange}
       spellCheck="false"

@@ -34,11 +34,18 @@ export default function TaskBoards(props) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        paddingTop: "14vw",
+        paddingTop: "13vw",
       }}
     >
       <EmptyTask />
-      <div style={{ fontWeight: 400, fontSize: "26px", color: "#111111" }}>
+      <div
+        style={{
+          fontWeight: 400,
+          fontSize: "26px",
+          color: "#111111",
+          margin: "15px",
+        }}
+      >
         Add some tasks to begin your journey!
       </div>
     </div>
