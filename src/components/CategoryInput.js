@@ -39,8 +39,8 @@ export default function CategoryInput(props) {
         spellCheck="false"
         onFocus={handleFocus}
       />
-      {props.categoryList.length === 1 &&
-      props.categoryList[0].title === "Default Category" ? (
+      {props.categoryList.length === 0 || props.categoryList.length === 1 &&
+        props.categoryList[0].title === "Default Category" ? (
         <></>
       ) : (
         <ul className={`category-input-menu ${menuState}`} ref={menuRef}>
