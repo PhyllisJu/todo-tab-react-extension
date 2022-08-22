@@ -4,7 +4,9 @@
   "author": "The TodoTab Team",
   "version": "0.0.0.1",
   "description": "The almightly new tab for your task management.",
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
@@ -24,8 +26,12 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["../src/images/*.jpeg"],
-      "matches": ["<all_urls>"]
+      "resources": [
+        "../src/images/*.jpeg"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
 }

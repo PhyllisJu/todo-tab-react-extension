@@ -10,25 +10,19 @@ export default function TaskItem(props) {
     setChecked(props.task.checked);
   }, [props]);
 
-  const handleChange = (event, category) => {
-    console.log("handleChange category parameter: " + category);
+  const handleChange = (event) => {
     setChecked(event.target.checked);
     // the value parameter is stored in event.target.defaultValue
-    checkTask(event.target.defaultValue, category, event.target.checked);
+    checkTask(props.index, props.task.category, event.target.checked);
   };
 
-  // TODO: change taskTitle to taskId
-  const handleDelete = (title, category) => {
-    console.log("handleDelete category parameter: " + category);
-    // find the index of the task in the storage
-    console.log(title);
+  const handleDelete = () => {
+    let category = props.task.category;
+    let taskIdx = props.index
 
     chrome.storage.local.get("boards").then((result) => {
       let boards = result.boards;
       let boardIdx = boards.findIndex((board) => board.category === category);
-      let taskIdx = boards[boardIdx].tasks.findIndex(
-        (task) => task.title === title
-      );
       // if the task to be deleted is the only task in the board, delete the board
       if (boards[boardIdx].tasks.length === 1) {
         console.log("deleting board");
@@ -93,7 +87,7 @@ export default function TaskItem(props) {
             },
           }}
           checked={checked}
-          onChange={(e) => handleChange(e, props.task.category)}
+          onChange={handleChange}
           value={props.task.title}
           disableRipple
         />
@@ -133,7 +127,7 @@ export default function TaskItem(props) {
             fill: "#A7B4AF",
             cursor: "pointer",
           }}
-          onClick={() => handleDelete(props.task.title, props.task.category)}
+          onClick={handleDelete}
         />
       </div>
     </div>
@@ -142,13 +136,11 @@ export default function TaskItem(props) {
 
 // helper function
 // TODO: change taskTitle to taskId
-function checkTask(taskTitle, taskCategory, checkedState) {
+function checkTask(taskIdx, taskCategory, checkedState) {
+  console.log(taskIdx)
   chrome.storage.local.get("boards").then((result) => {
     let boards = result.boards;
     let boardIdx = boards.findIndex((board) => board.category === taskCategory);
-    let taskIdx = boards[boardIdx].tasks.findIndex(
-      (task) => task.title === taskTitle
-    );
     boards[boardIdx].tasks[taskIdx].checked = checkedState;
     chrome.storage.local
       .set({ boards: boards })

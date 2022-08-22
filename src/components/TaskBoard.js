@@ -56,7 +56,7 @@ export default function TaskBoard(props) {
         }}
       >
         {props.tasks.map((task, index) => (
-          <TaskItem task={task} key={index} />
+          <TaskItem task={task} index={index} key={index} />
         ))}
       </div>
     </div>
