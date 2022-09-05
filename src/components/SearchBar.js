@@ -59,7 +59,7 @@ export default function SearchBar(props) {
     >
       <FormControl
         sx={{
-          height: "50px",
+          height: "48px",
           minWidth: "50px",
           flex: 0.25,
           margin: 0,
@@ -69,8 +69,8 @@ export default function SearchBar(props) {
         <Select
           sx={{
             backgroundColor: "#BCC7C3",
+            border: "2px solid #E8E8E8",
             borderRadius: "15px 0px 0px 15px",
-            boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.25)",
             minHeight: 0,
             margin: 0,
             "& .MuiSvgIcon-root": {
@@ -89,11 +89,12 @@ export default function SearchBar(props) {
             sx: {
               "& .MuiPaper-root": {
                 backgroundColor: "#ffffff",
+                border: "2px solid #E8E8E8",
                 borderRadius: "15px",
+                boxShadow: "none",
                 width: "200px",
                 paddingTop: 0,
                 paddingBottom: 0,
-                boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.25)",
               },
             },
           }}
@@ -147,9 +148,10 @@ export default function SearchBar(props) {
           flex: 0.75,
           alignItems: "center",
           backgroundColor: "#ffffff",
+          border: "2px solid #E8E8E8",
           borderRadius: "0px 15px 15px 0px",
           height: "48px",
-          boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.25)",
+          boxShadow: "none",
         }}
       >
         <InputBase
