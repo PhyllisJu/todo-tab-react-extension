@@ -1,18 +1,18 @@
 .category-input {
   background-color: #ffffff;
   outline: none;
-  border: 2px solid #e8e8e8;
   padding: 6px 10px;
   font-size: 18px;
   border-radius: 13px;
   width: 100%;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+  border: none;
 }
 
 .category-input-menu {
   background: #ffffff;
-  border: 2px solid #e8e8e8;
   border-radius: 15px;
-  padding: 10px 0px;
+  padding: 10px 10px;
   width: 14vw;
   min-width: 150px;
   max-height: 150px;
@@ -22,6 +22,7 @@
   font-size: 18px;
   color: #111111;
   text-align: center;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
 }
 
 .category-input-menu li {

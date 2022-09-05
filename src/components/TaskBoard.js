@@ -3,11 +3,8 @@ import SmallProgressBar from "./SmallProgressBar";
 import TaskItem from "./TaskItem";
 
 export default function TaskBoard(props) {
-  // TODO: not hardcode the progress
+  let completed = calcCompleted(props.tasks);
 
-  console.log("props.tasks: " + JSON.stringify(props.tasks));
-  console.log("props.category: " + JSON.stringify(props.category));
-  const [progress, setProgress] = React.useState("30");
   return (
     <div
       style={{
@@ -35,11 +32,17 @@ export default function TaskBoard(props) {
             fontWeight: 700,
             fontSize: "20px",
             color: "#111111",
+            width: "60%",
+            overflowWrap: "break-word",
           }}
         >
           {props.category.title}
         </span>
-        <SmallProgressBar progress={progress} color={props.category.color} />
+        <SmallProgressBar
+          color={props.category.color}
+          completed={completed}
+          total={props.tasks.length}
+        />
       </div>
       <div
         style={{
@@ -53,9 +56,13 @@ export default function TaskBoard(props) {
         }}
       >
         {props.tasks.map((task, index) => (
-          <TaskItem task={task} key={index} />
+          <TaskItem task={task} index={index} key={index} />
         ))}
       </div>
     </div>
   );
+}
+
+function calcCompleted(tasks) {
+  return tasks.filter((task) => task.checked === true).length;
 }

@@ -33,14 +33,15 @@ export default function CategoryInput(props) {
         type="text"
         className="category-input"
         placeholder="Give your task a category here"
-        maxLength="80"
+        maxLength="40"
         value={props.input}
         onChange={props.onChange}
         spellCheck="false"
         onFocus={handleFocus}
       />
-      {props.categoryList.length === 1 &&
-      props.categoryList[0].title === "Default Category" ? (
+      {props.categoryList.length === 0 ||
+      (props.categoryList.length === 1 &&
+        props.categoryList[0].title === "Default Category") ? (
         <></>
       ) : (
         <ul className={`category-input-menu ${menuState}`} ref={menuRef}>
