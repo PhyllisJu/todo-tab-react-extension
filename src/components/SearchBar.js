@@ -44,8 +44,9 @@ export default function SearchBar(props) {
 
   const handleSearchSubmit = () => {
     let query = engineURL + searchInput;
-    window.open(query);
-    // TODO: always opened in a new tab???
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.update(tabs[0].id, { url: query });
+    });
   };
 
   return (
