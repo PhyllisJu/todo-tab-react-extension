@@ -5,7 +5,9 @@
   "version": "0.0.0.1",
   "description": "The almightly new tab for your task management.",
   "permissions": [
-    "storage"
+    "storage",
+    "alarms",
+    "notifications"
   ],
   "chrome_url_overrides": {
     "newtab": "index.html"
@@ -33,5 +35,8 @@
         "<all_urls>"
       ]
     }
-  ]
+  ],
+  "background": {
+    "service_worker": "eventPage.js"
+  }
 }

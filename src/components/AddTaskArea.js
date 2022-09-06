@@ -197,6 +197,14 @@ function addTask(taskInput, dateInput, dueTime, categoryTitle) {
     category: categoryTitle,
     checked: false,
   };
+
+  chrome.alarms.create(
+    newTask.title,
+    {
+      when: Date.parse(dateInput + ' ' + dueTime) - 600000
+    }
+  );
+  
   chrome.storage.local
     .get({ boards: [] })
     .then((result) => {
