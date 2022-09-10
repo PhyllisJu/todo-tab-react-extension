@@ -23,6 +23,11 @@ export default function TaskItem(props) {
     chrome.storage.local.get("boards").then((result) => {
       let boards = result.boards;
       let boardIdx = boards.findIndex((board) => board.category === category);
+      
+      chrome.alarms.clear(boards[boardIdx].tasks[taskIdx].title).then((result) => {
+        console.log("delete alarm successfully")
+      })
+
       // if the task to be deleted is the only task in the board, delete the board
       if (boards[boardIdx].tasks.length === 1) {
         console.log("deleting board");
