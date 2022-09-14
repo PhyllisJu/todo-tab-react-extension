@@ -6,7 +6,7 @@ chrome.runtime.onStartup.addListener(function () {
                 type: "basic",
                 iconUrl: chrome.runtime.getURL("favicon.ico"),
                 title: alarm.name,
-                message: "due in 10 miniutes",
+                message: "due in 10 minutes",
             }
         );
     })

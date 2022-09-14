@@ -25,13 +25,11 @@ export function sendMesage(taskName, dueTime) {
   const title = taskName;
   const options = {
     dir: "auto",
-    body: "Your " + taskName + "is due in " + dueTime + ".",
+    body: "Your <" + taskName + "> " + "is due in " + dueTime + ".",
     data: {
       originUrl: ``, //TODO: The URL of the new tab.
     },
     requireInteraction: true,
-    //   image: ,
-    //   icon: ,
   };
   notification = new Notification(title, options);
 
