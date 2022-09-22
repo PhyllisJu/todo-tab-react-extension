@@ -20,11 +20,15 @@ Compatible with **Chrome** and **Microsoft Edge**.
 ## How to Use
 
 Open the terminal and navigate to this repository folder, then run:
+
 `npm install`
 
 After installing the packages, run:
+
 `npm run build`
 
-After creating a build folder, open the web browser and go to the extensions page, enable the developer mode, and click "load unpacked".
+After creating a build folder, open the web browser and go to the extensions page, **enable the developer mode**, and click **load unpacked**.
 
-Load the build folder and enable this extension. Open a new tab page and if there is a pop window asking whether you want the extension changes your new tab page, please let it keep the changes. You will see a to-do tab now!
+Load the **build** folder and enable this extension. Open a new tab page and if there is a pop window asking whether you want the extension changes your new tab page, please let it **keep the changes**. 
+
+You will see a to-do tab now!
