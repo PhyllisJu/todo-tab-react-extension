@@ -6,6 +6,10 @@ Compatible with **Chrome** and **Microsoft Edge**.
 
 ## Preview
 
+![screenshot of the to-do tab with a white background](screenshot1.jpg)
+
+![screenshot of the to-do tab with a yellow background](screenshot2.jpg)
+
 ## Features
 
 - Switching search engines: Google, Microsoft Bing, Stack Overflow, DuckDuckGo, Baidu
