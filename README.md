@@ -17,7 +17,7 @@ Compatible with **Chrome** and **Microsoft Edge**.
 - Notifications of tasks
 - Customize the background color of the new tab page
 
-## How to Use
+## How to Run
 
 Open the terminal and navigate to this repository folder, then run:
 
@@ -32,3 +32,7 @@ After creating a build folder, open the web browser and go to the extensions pag
 Load the **build** folder and enable this extension. Open a new tab page and if there is a pop window asking whether you want the extension changes your new tab page, please let it **keep the changes**. 
 
 You will see a to-do tab now!
+
+## Stay Tuned ...
+
+We are planning to bring our project into the extension store of Chrome and Microsoft Edge!
