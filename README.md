@@ -4,11 +4,20 @@ This is a web extension that overrides the new tab page with a **cleaner UI** an
 
 Compatible with **Chrome** and **Microsoft Edge**.
 
-## Preview
+## <a name="contents">Contents</a>
+
+- [Preview](#preview)
+- [Features](#features)
+- [How to Run](#run)
+- [What's Next](#next)
+
+## <a name="preview">Preview</a>
 
 ![screenshot of the to-do tab with a white background](screenshot1.jpg)
 
-## Features
+[Go back to contents](#contents)
+
+## <a name="features">Features</a>
 
 - Switching search engines: Google, Microsoft Bing, Stack Overflow, DuckDuckGo, Baidu
 - A search bar
@@ -17,7 +26,9 @@ Compatible with **Chrome** and **Microsoft Edge**.
 - Notifications of tasks
 - Customize the background color of the new tab page
 
-## How to Run
+[Go back to contents](#contents)
+
+## <a name="run">How to Run</a>
 
 Open the terminal and navigate to this repository folder, then run:
 
@@ -33,6 +44,10 @@ Load the **build** folder and enable this extension. Open a new tab page and if 
 
 You will see a to-do tab now!
 
-## Stay Tuned ...
+[Go back to contents](#contents)
+
+## <a name="next">Stay Tuned ...</a>
 
 We are planning to bring our project into the extension store of Chrome and Microsoft Edge!
+
+[Go back to contents](#contents)
